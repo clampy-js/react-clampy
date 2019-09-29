@@ -1,8 +1,15 @@
 # @clampy-js/react-clampy
 
-> React component that clamps the content of an element by adding an ellipsis to it if the content inside is too long.
+React component that clamps the content of an element by adding an ellipsis to it if the content inside is too long.
 
-[![NPM](https://img.shields.io/npm/v/@clampy-js/react-clampy.svg)](https://www.npmjs.com/package/@clampy-js/react-clampy) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![Build Status](https://img.shields.io/travis/clampy-js/react-clampy.svg)](https://travis-ci.org/clampy-js/react-clampy)
+[![GitHub issues](https://img.shields.io/github/issues/clampy-js/react-clampy.svg)](https://github.com/clampy-js/react-clampy/issues)
+[![GitHub license](https://img.shields.io/github/license/clampy-js/react-clampy.svg)](https://github.com/clampy-js/react-clampy/blob/master/LICENSE)
+[![npm](https://img.shields.io/npm/dt/@clampy-js/react-clampy.svg)](https://www.npmjs.com/package/@clampy-js/react-clampy)
+
+It uses [@clampy-js/clampy](https://github.com/clampy-js/clampy) library (a fork of [Clamp.js](https://github.com/josephschmitt/Clamp.js)) behind the scene to apply the ellipsis.
+
+It automatically re-clamps itself when the element or the browser window change size.
 
 ## Install
 
