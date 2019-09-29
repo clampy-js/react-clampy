@@ -22,7 +22,9 @@
     "start": "rollup -c -w",
     "prepare": "npm run build",
     "predeploy": "cd example && npm install && npm run build",
-    "deploy": "gh-pages -d example/build"
+    "deploy": "gh-pages -d example/build",
+    "semantic-release": "cd dist && semantic-release; cd ../",
+    "travis-deploy-once": "travis-deploy-once"
   },
   "peerDependencies": {
     "prop-types": "^15.7.2",

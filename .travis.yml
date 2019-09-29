@@ -11,6 +11,6 @@ before_script:
   - npm install
   - npm prune
 script:
-  - npm run deploy
+  - npm run build
 after_success:
   - npm run semantic-release
