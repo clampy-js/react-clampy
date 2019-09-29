@@ -1,22 +1,81 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React, { useEffect, useRef, useState } from "react";
+import PropTypes from "prop-types";
+import * as clampy_ from "@clampy-js/clampy/dist/clampy.umd.js";
+import * as elementResizeDetectorMaker_ from "element-resize-detector";
 
-import styles from './styles.css'
+const elementResizeDetectorMaker =
+  elementResizeDetectorMaker_.default || elementResizeDetectorMaker_;
+const clampy = clampy_.default || clampy_;
 
-export default class ExampleComponent extends Component {
-  static propTypes = {
-    text: PropTypes.string
+function Clampy(props) {
+  const [opacity, setOpacity] = useState(0);
+  let containerRef = useRef(null);
+  let initialContent;
+  if (!initialContent) {
+    initialContent = props.children;
   }
 
-  render() {
-    const {
-      text
-    } = this.props
+  let resizeDetector = elementResizeDetectorMaker({ strategy: "scroll" });
 
-    return (
-      <div className={styles.test}>
-        Example Component: {text}
-      </div>
-    )
-  }
+  const onResize = () => {
+    truncate();
+  };
+
+  const truncate = () => {
+    setOpacity(0);
+    const options = {
+      clamp: props.clampSize,
+      truncationChar: props.truncationChar,
+      // truncationHTML: truncationHTML,
+      // Clampy will try to use native clamp if available in the browser
+      // however this can leads to unexpected results so we need to explicitely
+      // disable it.
+      useNativeClamp: false
+    };
+
+    if (initialContent) {
+      containerRef.current.innerHTML = initialContent;
+    }
+    clampy.clamp(containerRef.current, options);
+    setOpacity(1);
+  };
+
+  useEffect(() => {
+    truncate();
+
+    resizeDetector.listenTo(containerRef.current, () => {
+      truncate();
+    });
+
+    window.addEventListener("resize", onResize);
+
+    return () => {
+      //   cleanup
+      resizeDetector.removeAllListeners(containerRef.current);
+      window.removeEventListener("resize", onResize);
+    };
+  }, [initialContent, props, truncate, onResize, resizeDetector]);
+
+  return React.createElement(
+    "div",
+    {
+      ref: containerRef,
+      style: { opacity: opacity }
+    },
+    props.children
+  );
 }
+
+Clampy.propTypes = {
+  children: PropTypes.node,
+  clampSize: PropTypes.string,
+  truncationChar: PropTypes.string
+};
+
+Clampy.defaultProps = {
+  clampSize: "auto", // Default clamp size based on available height
+  truncationChar: "…"
+  // truncationHTML: ''
+};
+
+export default Clampy;

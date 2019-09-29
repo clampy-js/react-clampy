@@ -15,12 +15,12 @@ npm install --save @clampy-js/react-clampy
 ```jsx
 import React, { Component } from 'react'
 
-import MyComponent from '@clampy-js/react-clampy'
+import Clampy from '@clampy-js/react-clampy'
 
-class Example extends Component {
+class Clampy extends Component {
   render () {
     return (
-      <MyComponent />
+      <Clampy clampSize="2">My long text to clamp</Clampy>
     )
   }
 }
