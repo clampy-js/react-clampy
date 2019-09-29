@@ -4,7 +4,7 @@ React component that clamps the content of an element by adding an ellipsis to i
 
 [![Build Status](https://img.shields.io/travis/clampy-js/react-clampy.svg)](https://travis-ci.org/clampy-js/react-clampy)
 [![GitHub issues](https://img.shields.io/github/issues/clampy-js/react-clampy.svg)](https://github.com/clampy-js/react-clampy/issues)
-[![GitHub license](https://img.shields.io/github/license/clampy-js/react-clampy.svg)](https://github.com/clampy-js/react-clampy/blob/master/LICENSE)
+[![GitHub license](https://img.shields.io/npm/l/@clampy-js/react-clampy)](https://github.com/clampy-js/react-clampy/blob/master/LICENSE)
 [![npm](https://img.shields.io/npm/dt/@clampy-js/react-clampy.svg)](https://www.npmjs.com/package/@clampy-js/react-clampy)
 
 It uses [@clampy-js/clampy](https://github.com/clampy-js/clampy) library (a fork of [Clamp.js](https://github.com/josephschmitt/Clamp.js)) behind the scene to apply the ellipsis.
