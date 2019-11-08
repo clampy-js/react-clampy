@@ -1,23 +1,36 @@
 {
-  "parser": "babel-eslint",
-  "extends": [
-    "standard",
-    "standard-react"
-  ],
   "env": {
-    "es6": true
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "jest": true,
+    "node": true
   },
-  "plugins": [
-    "react"
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:prettier/recommended"
   ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parser": "babel-eslint",
   "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 2018,
     "sourceType": "module"
   },
+  "plugins": ["import", "react", "react-hooks", "prettier"],
   "rules": {
-    // don't force es6 functions to include space before paren
-    "space-before-function-paren": 0,
-
-    // allow specifying true explicitly for boolean props
-    "react/jsx-boolean-value": 0
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
   }
 }
