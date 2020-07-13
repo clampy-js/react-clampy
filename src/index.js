@@ -25,6 +25,7 @@ function Clampy(props) {
     const options = {
       clamp: props.clampSize,
       truncationChar: props.truncationChar,
+      splitOnChars: props.splitOnChars,
       // truncationHTML: truncationHTML,
       // Clampy will try to use native clamp if available in the browser
       // however this can leads to unexpected results so we need to explicitely
@@ -40,7 +41,7 @@ function Clampy(props) {
       clampy.clamp(containerRef.current, options);
       setOpacity(1);
     }
-  }, [initialContent, props.clampSize, props.truncationChar]);
+  }, [initialContent, props.clampSize, props.truncationChar, props.splitOnChars]);
 
   useEffect(() => {
     truncate();
@@ -72,12 +73,14 @@ function Clampy(props) {
 Clampy.propTypes = {
   children: PropTypes.node,
   clampSize: PropTypes.string,
-  truncationChar: PropTypes.string
+  truncationChar: PropTypes.string,
+  splitOnChars: PropTypes.array
 };
 
 Clampy.defaultProps = {
   clampSize: "auto", // Default clamp size based on available height
-  truncationChar: "…"
+  truncationChar: "…",
+  splitOnChars: ['.', '-', '–', '—', ' '],
   // truncationHTML: ''
 };
 
